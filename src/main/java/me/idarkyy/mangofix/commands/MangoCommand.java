@@ -1,15 +1,18 @@
 package me.idarkyy.mangofix.commands;
 
 import me.idarkyy.mangofix.MangoFix;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.zencode.mango.Mango;
 import org.zencode.mango.config.ConfigFile;
 import org.zencode.mango.config.LanguageFile;
 import org.zencode.mango.factions.Faction;
+import org.zencode.mango.factions.types.PlayerFaction;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +33,11 @@ public class MangoCommand implements CommandExecutor {
                     "",
                     " &7/&bmango &7reload &bReloads Mango and MangoFix",
                     " &7/&bmango &7forcesave &bForcefully saves all factions",
+                    "",
+                    " &7/&bmango &7setleader &7<&bplayer&7> <&bfaction&7> &7Forcefully set the leader",
                     "&8&m-----------------------------------------------------"
             );
+
             return true;
         }
 
@@ -53,6 +59,36 @@ public class MangoCommand implements CommandExecutor {
             }
 
             sender.sendMessage(ChatColor.GREEN + "Saved all factions!");
+        } else if(args[0].equalsIgnoreCase("setleader")) {
+            if(args.length < 3) {
+                sendAll(sender, "&7Correct usage: &7/&bmango &7setleader &7<&bplayer&7> <&bfaction&7>");
+                return true;
+            }
+
+            Player player = Bukkit.getPlayer(args[1]);
+            Faction faction = player != null ? Mango.getInstance().getFactionManager().getFactionByName(args[2]) : null;
+
+            if(player == null) {
+                sender.sendMessage(ChatColor.RED + args[1] + " is offline.");
+                return true;
+            }
+
+            if(faction == null) {
+                sender.sendMessage(ChatColor.RED + "Faction \"" + args[2] + "\" does not exist.");
+                return true;
+            }
+
+            if(!(faction instanceof PlayerFaction)) {
+                sender.sendMessage(ChatColor.RED + "That is not a player faction");
+                return true;
+            }
+
+            if(!((PlayerFaction) faction).getMembers().contains(player.getUniqueId())) {
+                sender.sendMessage(ChatColor.RED + player.getName() + " is must be in the specified faction.");
+            }
+
+            ((PlayerFaction)faction).setLeader(player.getUniqueId());
+            sender.sendMessage(ChatColor.GREEN + "Updated the faction leader of faction " + faction.getName() + " to " + player.getName());
         }
 
         return true;
