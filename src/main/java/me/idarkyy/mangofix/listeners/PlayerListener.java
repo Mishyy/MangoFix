@@ -59,6 +59,10 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onOpen(PlayerInteractEvent event) {
+        if(event.getClickedBlock() == null) {
+            return;
+        }
+
         if(!(event.getClickedBlock() instanceof Openable)) {
             return;
         }

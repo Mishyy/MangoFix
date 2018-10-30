@@ -4,7 +4,7 @@ name: MangoFix
 description: MangoFix is a plugin aiming to fix the plugin called Mango and add features to it
 author: iDarkyy
 
-version: 2.0
+version: 2.0.1
 
 softdepend: [Mango]
 
