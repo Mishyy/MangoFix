@@ -1,0 +1,14 @@
+main: me.idarkyy.mangofix.MangoFix
+
+name: MangoFix
+description: MangoFix is a plugin aiming to fix the plugin called Mango and add features to it
+author: iDarkyy
+
+version: 2.0
+
+softdepend: [Mango]
+
+commands:
+  mango:
+    description: Main command of the plugin
+    aliases: [mangofix, mf, mangofactions, mangofac]

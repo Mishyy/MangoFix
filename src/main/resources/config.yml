@@ -1,0 +1,14 @@
+# Auto save configuration
+auto-save:
+  # Should MangoFix save factions?
+  enabled: true
+
+  # Interval in between saves - in seconds
+  interval: 300
+
+  # Should we save asynchronously?
+  async: true
+
+mobs:
+  # Should enderman teleportation be disabed?
+  disable-enderman-teleport: true
