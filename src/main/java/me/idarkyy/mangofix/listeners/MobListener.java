@@ -1,7 +1,5 @@
 package me.idarkyy.mangofix.listeners;
 
-import com.destroystokyo.paper.event.entity.EndermanAttackPlayerEvent;
-import com.destroystokyo.paper.event.entity.EndermanEscapeEvent;
 import me.idarkyy.mangofix.MangoFix;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;

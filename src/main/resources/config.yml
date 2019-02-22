@@ -9,6 +9,22 @@ auto-save:
   # Should we save asynchronously?
   async: true
 
+focus:
+  focused-message: "&cYou are now focusing on &e%player%"
+  unfocus-message: "&cYou are longer focusing on &e%player%"
+
+  focus-usage: "&cCorrect usage: &e/focus <player>"
+  unfocus-usage: "&eCorrect usage: &e/unfocus"
+
+  player-not-found: "&e%player% &cis offline."
+
+  nametag-prefix: "&b&l"
+
 mobs:
   # Should enderman teleportation be disabed?
   disable-enderman-teleport: true
+
+tellcoords:
+  # %x% %y% %z% %world%
+  # The message format of /tellcoords
+  format: "%x%, %y%, %z%"

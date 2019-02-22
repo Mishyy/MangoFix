@@ -12,3 +12,6 @@ commands:
   mango:
     description: Main command of the plugin
     aliases: [mangofix, mf, mangofactions, mangofac]
+  tellcoordinates:
+    description: Sends player's coordinates in faction chat
+    aliases: [tellcoords, tc, sendcoordinates, sendcoords]

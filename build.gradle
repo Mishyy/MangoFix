@@ -12,7 +12,8 @@ repositories {
 
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
-    maven { url 'https://repo.destroystokyo.com/repository/maven-public/' }
+    maven { url = 'https://repo.destroystokyo.com/repository/maven-public/' }
+    maven { url = "http://repo.dmulloy2.net/nexus/repository/public/" }
 
     flatDir {
         dirs 'libs'
@@ -20,7 +21,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.destroystokyo.paper:paper-api:1.12.2-R0.1-SNAPSHOT'
-    implementation 'org.bukkit:bukkit:1.8.8-R0.1-SNAPSHOT'
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.4.0";
 }

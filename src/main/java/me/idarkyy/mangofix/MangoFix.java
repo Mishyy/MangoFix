@@ -1,12 +1,14 @@
 package me.idarkyy.mangofix;
 
 import me.idarkyy.mangofix.commands.MangoCommand;
+import me.idarkyy.mangofix.commands.TellCoordsCommand;
 import me.idarkyy.mangofix.listeners.MobListener;
 import me.idarkyy.mangofix.listeners.PlayerListener;
 import me.idarkyy.mangofix.tasks.AutoSaveTask;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -38,13 +40,14 @@ public class MangoFix extends JavaPlugin {
         pluginManager.registerEvents(new MobListener(), this);
 
         getCommand("mango").setExecutor(new MangoCommand());
+        getCommand("tellcoordinates").setExecutor(new TellCoordsCommand());
 
         AutoSaveTask autoSaveTask = new AutoSaveTask();
 
         if (config.getBoolean("auto-save.async", true)) {
             scheduler.scheduleAsyncRepeatingTask(this, autoSaveTask, config.getLong("auto-save.interval", 300 * 20), config.getLong("auto-save.interval", 300 * 20));
         } else {
-            scheduler.scheduleAsyncRepeatingTask(this, autoSaveTask, config.getLong("auto-save.interval", 300 * 20), config.getLong("auto-save.interval", 300 * 20));
+            scheduler.scheduleSyncRepeatingTask(this, autoSaveTask, config.getLong("auto-save.interval", 300 * 20), config.getLong("auto-save.interval", 300 * 20));
         }
     }
 
